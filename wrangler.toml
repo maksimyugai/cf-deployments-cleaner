@@ -1,0 +1,18 @@
+name = "cf-deployments-cleaner"
+main = "src/index.ts"
+compatibility_date = "2025-01-01"
+
+workers_dev = false
+preview_urls = false
+
+# 1:00 AM GMT+6 == 19:00 UTC (previous day)
+[triggers]
+crons = ["0 19 * * *"]
+
+[vars]
+# How many most-recent production deployments to keep per project.
+KEEP_PRODUCTION_COUNT = "3"
+
+# Secrets (set with `wrangler secret put <NAME>`), not stored in this file:
+#   CF_API_TOKEN   - API token with "Cloudflare Pages: Edit" permission
+#   CF_ACCOUNT_ID  - Cloudflare account ID
